@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fce4ec; /* Light Pink background color, you can change it */
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            position: relative;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White container background color, you can change it */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff4081; /* Pink text color, you can change it */
+        }
+
+        p {
+            color: #333333; /* Dark text color, you can change it */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ff4081; /* Pink button color, you can change it */
+            color: #ffffff; /* White button text color, you can change it */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #noButton {
+            background-color: #e57373; /* Light Red button color, you can change it */
+        }
+
+        .firework {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ff4081; /* Firework color, you can change it */
+            animation: explode 1s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        #gifContainer {
+            display: none;
+        }
+
+        #noGifContainer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Will You Be My Valentine?</h1>
+    <p>Dear ALEKSANDRA,</p>
+    <p>I have a special question for you...</p>
+    <img src="blazo.jpg.jpg" alt="Your Image">
+    <p>Will you be my Valentine?</p>
+    <button id="yesButton" onclick="showFireworks()">Yes, I will!</button>
+    <button id="noButton" onclick="showNoGif()">No, thanks</button>
+
+    <div id="gifContainer">
+        <img src="gif.gif" alt="Celebration GIF">
+        <p>Odmah posalji poruku svom muskarcu</p>
+    </div>
+
+    <div id="noGifContainer">
+        <img src="gif1.gif" alt="Sad GIF">
+        <p>NETACNO POKUSAJ PONOVO</p>
+    </div>
+
+    <script>
+        var clickCount = 0;
+
+        function showFireworks() {
+            // Create multiple fireworks elements
+            for (var i = 0; i < 10; i++) {
+                createFirework();
+            }
+
+            // Show the "Yes" GIF container and hide the "No" GIF container
+            document.getElementById('gifContainer').style.display = 'block';
+            document.getElementById('noGifContainer').style.display = 'none';
+        }
+
+        function showNoGif() {
+            // Show the "No" GIF container and hide the "Yes" GIF container
+            document.getElementById('noGifContainer').style.display = 'block';
+            document.getElementById('gifContainer').style.display = 'none';
+        }
+
+        function createFirework() {
+            // Create a fireworks element
+            var fireworks = document.createElement('div');
+            fireworks.className = 'firework';
+
+            // Randomize position
+            var xPos = Math.random() * window.innerWidth;
+            var yPos = Math.random() * window.innerHeight;
+
+            fireworks.style.left = xPos + 'px';
+            fireworks.style.top = yPos + 'px';
+
+            // Append the fireworks to the container
+            document.body.appendChild(fireworks);
+
+            // Remove the fireworks element after the animation ends
+            fireworks.addEventListener('animationend', function () {
+                fireworks.parentNode.removeChild(fireworks);
+            });
+        }
+    </script>
+</div>
+
+</body>
+</html>
